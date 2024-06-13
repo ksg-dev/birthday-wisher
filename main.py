@@ -14,28 +14,40 @@ def write_email(person_name, email_add):
     template = f"letter_templates/letter_{pick}.txt"
     with open(template) as file:
         content = file.read()
-        # print(content)
+
         new_email = content.replace(PLACEHOLDER, name)
-        # send_email(new_email)
+        send_email(email, new_email)
         print(new_email)
 
-def send_email(email):
-    pass
+
+def send_email(email_add, e_content):
+    my_email = "testemail.ksg.data@gmail.com"
+    app_password = "tjfe xxdk yojh xpuc"
+    to_email = email_add
+    body = e_content
+
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+        connection.starttls()
+        connection.login(user=my_email, password=app_password)
+
+        connection.sendmail(
+            from_addr=my_email,
+            to_addrs=to_email,
+            msg=f"Subject: HAPPY BIRTHDAY\n\n{body}"
+        )
 
 
 def main():
     now = dt.datetime.now()
     # print(now.month, now.day)
     bday = pd.read_csv("birthdays.csv", index_col=False)
-    # print(bday)
+
     for (index, row) in bday.iterrows():
         if row.month == now.month and row.day == now.day:
             name = bday.iloc[row.name]["name"]
             email = bday.iloc[row.name]["email"]
 
             write_email(name, email)
-            # birthday_info = bday.loc(row.name)
-            # print(bday.iloc[row.name])
 
 
 
