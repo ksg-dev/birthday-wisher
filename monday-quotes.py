@@ -27,7 +27,7 @@ def send_email(quote):
 
 def main():
     now = dt.datetime.now()
-    # print(now.weekday())
+
     if now.weekday() == 3:
         with open("quotes.txt", "r") as file:
             quote = file.readlines()
