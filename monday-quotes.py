@@ -28,7 +28,7 @@ def send_email(quote):
 def main():
     now = dt.datetime.now()
 
-    if now.weekday() == 3:
+    if now.weekday() == 0:
         with open("quotes.txt", "r") as file:
             quote = file.readlines()
             pick = random.choice(quote)
