@@ -17,7 +17,6 @@ def write_email(person_name, email_add):
 
         new_email = content.replace(PLACEHOLDER, name)
         send_email(email, new_email)
-        print(new_email)
 
 
 def send_email(email_add, e_content):
